@@ -51,7 +51,7 @@ jobs:
           GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
         run: |
           R -e "
-            remotes::install_github('ESHackathon/CiteSource', force = TRUE);
+            remotes::install_github('TNRiley/CS_Mirror', force = TRUE);
             rsconnect::setAccountInfo(name=${{secrets.SHINY_TREVOR_ACCOUNT}}, token=${{secrets.TREVOR_SHINY_TOKEN}}, secret=${{secrets.TREVOR_SHINY_SECRET}}); 
             rsconnect::deployApp(appName = 'CiteSource_latest_mirror', appDir = './inst/shiny-app/CiteSource', forceUpdate = TRUE)"   
 
@@ -61,6 +61,6 @@ jobs:
           GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
         run: |
           R -e "
-            remotes::install_github('ESHackathon/CiteSource', force = TRUE);
+            remotes::install_github('TNRiley/CS_Mirror', force = TRUE);
             rsconnect::setAccountInfo(name=${{secrets.SHINY_TREVOR_ACCOUNT}}, token=${{secrets.TREVOR_SHINY_TOKEN}}, secret=${{secrets.TREVOR_SHINY_SECRET}}); 
             rsconnect::deployApp(appName = 'CiteSource_mirror', appDir = './inst/shiny-app/CiteSource', forceUpdate = TRUE)"   
