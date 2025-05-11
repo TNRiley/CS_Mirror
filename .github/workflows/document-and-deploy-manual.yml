@@ -59,9 +59,9 @@ jobs:
           GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
         run: |
           R -e "
-            remotes::install_github('ESHackathon/CiteSource', force = TRUE);
-            rsconnect::setAccountInfo(name=${{secrets.SHINY_LUKAS_ACCOUNT}}, token=${{secrets.SHINY_LUKAS_TOKEN}}, secret=${{secrets.SHINY_LUKAS_SECRET}}); 
-            rsconnect::deployApp(appName = 'CiteSource_latest', appDir = './inst/shiny-app/CiteSource', forceUpdate = TRUE)"   
+            remotes::install_github('TNRiley/CS_Mirrore', force = TRUE);
+            rsconnect::setAccountInfo(name=${{secrets.SHINY_TREVOR_ACCOUNT}}, token=${{secrets.TREVOR_SHINY_TOKEN}}, secret=${{secrets.TREVOR_SHINY_SECRET}}); 
+            rsconnect::deployApp(appName = 'CiteSource_latest_mirror', appDir = './inst/shiny-app/CiteSource', forceUpdate = TRUE)"   
 
       - name: Deploy stable version from main
         if: github.ref == 'refs/heads/main'
@@ -69,22 +69,6 @@ jobs:
           GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
         run: |
           R -e "
-            remotes::install_github('ESHackathon/CiteSource', force = TRUE);
-            rsconnect::setAccountInfo(name=${{secrets.SHINY_LUKAS_ACCOUNT}}, token=${{secrets.SHINY_LUKAS_TOKEN}}, secret=${{secrets.SHINY_LUKAS_SECRET}}); 
-            rsconnect::deployApp(appName = 'CiteSource', appDir = './inst/shiny-app/CiteSource', forceUpdate = TRUE)"   
-
-      - name: Create pkgdown
-        env:
-          GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          R -e "
-            if (!require(CiteSource)) remotes::install_github('ESHackathon/CiteSource', force = TRUE);
-            pkgdown::build_site_github_pages(new_process = FALSE, install = FALSE)"
-      
-      - name: Deploy to GitHub pages 🚀
-        if: ${{ github.ref_name }} == 'main' || ${{ github.ref_name }} == 'master'
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          clean: true
-          branch: gh-pages
-          folder: docs      
+            remotes::install_github('TNRiley/CS_Mirror', force = TRUE);
+            rsconnect::setAccountInfo(name=${{secrets.SHINY_TREVOR_ACCOUNT}}, token=${{secrets.TREVOR_SHINY_TOKEN}}, secret=${{secrets.TREVOR_SHINY_SECRET}}); 
+            rsconnect::deployApp(appName = 'CiteSource_mirror', appDir = './inst/shiny-app/CiteSource', forceUpdate = TRUE)"   
